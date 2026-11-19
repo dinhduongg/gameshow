@@ -229,7 +229,7 @@ export default function AdminPanel({
               onNotify("Đã lưu cấu hình!", "success");
               onReturnHome();
             }}
-            className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs md:text-sm"
+            className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs md:text-sm cursor-pointer shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98]"
           >
             Lưu & Về Trang chủ
           </button>
@@ -252,10 +252,10 @@ export default function AdminPanel({
                   t.id as "questions" | "theme" | "cloud" | "hardware",
                 )
               }
-              className={`flex-1 min-w-45 py-2.5 px-4 rounded-lg font-bold text-xs md:text-sm ${
+              className={`flex-1 min-w-45 py-2.5 px-4 rounded-lg font-bold text-xs md:text-sm cursor-pointer transition-all duration-200 ${
                 activeTab === t.id
-                  ? "bg-slate-900 text-white"
-                  : "text-slate-600 hover:bg-slate-100"
+                  ? "bg-slate-900 text-white shadow-sm"
+                  : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
               }`}
             >
               {t.label}
@@ -292,12 +292,12 @@ export default function AdminPanel({
             <div className="flex flex-wrap items-center gap-2.5">
               <button
                 onClick={handleDownloadTemplate}
-                className="px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs md:text-sm"
+                className="px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs md:text-sm cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 Tải file Excel mẫu (.xlsx)
               </button>
 
-              <label className="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs md:text-sm cursor-pointer">
+              <label className="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs md:text-sm cursor-pointer transition-all duration-200 active:scale-[0.98]">
                 Upload file Excel bộ đề mới
                 <input
                   type="file"
@@ -312,14 +312,14 @@ export default function AdminPanel({
                   onUpdateQuestions(SAMPLE_QUESTIONS, true);
                   onNotify("Đã khôi phục bộ đề mẫu!", "success");
                 }}
-                className="px-3.5 py-2 rounded-lg bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 font-semibold text-xs md:text-sm"
+                className="px-3.5 py-2 rounded-lg bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 font-semibold text-xs md:text-sm cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 Khôi phục bộ đề mẫu
               </button>
 
               <button
                 onClick={onUnlockAllDecks}
-                className="px-3.5 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-semibold text-xs md:text-sm"
+                className="px-3.5 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-semibold text-xs md:text-sm cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 Mở khóa lại tất cả bộ đề
               </button>
@@ -329,7 +329,7 @@ export default function AdminPanel({
                   onUpdateQuestions([], true);
                   onNotify("Đã xóa sạch toàn bộ dữ liệu câu hỏi!", "info");
                 }}
-                className="px-3.5 py-2 rounded-lg bg-red-50 hover:bg-red-600 border border-red-300 text-red-700 hover:text-white font-semibold text-xs md:text-sm"
+                className="px-3.5 py-2 rounded-lg bg-red-50 hover:bg-red-600 border border-red-300 text-red-700 hover:text-white font-semibold text-xs md:text-sm cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 Xóa sạch dữ liệu
               </button>
@@ -340,7 +340,7 @@ export default function AdminPanel({
               {deckNames.map((dName) => (
                 <div
                   key={dName}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-300 text-xs font-bold text-slate-800"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 border border-slate-300 text-xs font-bold text-slate-800 transition-colors duration-150"
                 >
                   <span>
                     {dName} ({groupedDecks[dName].length} câu)
@@ -358,7 +358,7 @@ export default function AdminPanel({
                       );
                       onNotify(`Đã xóa "${dName}"!`, "info");
                     }}
-                    className="text-slate-400 hover:text-red-600 ml-1"
+                    className="text-slate-400 hover:text-red-600 ml-1 cursor-pointer transition-colors duration-150"
                     title="Xóa lẻ bộ đề này"
                   >
                     ✕
@@ -376,7 +376,7 @@ export default function AdminPanel({
                 <select
                   value={deckFilter}
                   onChange={(e) => setDeckFilter(e.target.value)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold bg-white"
+                  className="px-3 py-1.5 rounded-lg border border-slate-300 hover:border-slate-400 text-xs font-bold bg-white cursor-pointer transition-colors duration-150"
                 >
                   <option value="ALL">Tất cả bộ đề ({deckNames.length})</option>
                   {deckNames.map((d) => (
@@ -455,7 +455,7 @@ export default function AdminPanel({
                   <select
                     value={activeProfile.id}
                     onChange={(e) => onSelectProfile(e.target.value)}
-                    className="flex-1 px-3 py-2 rounded-lg border border-slate-300 text-sm font-bold bg-slate-50"
+                    className="flex-1 px-3 py-2 rounded-lg border border-slate-300 hover:border-slate-400 text-sm font-bold bg-slate-50 cursor-pointer transition-colors duration-150"
                   >
                     {profiles.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -466,7 +466,7 @@ export default function AdminPanel({
                   {profiles.length > 1 && (
                     <button
                       onClick={onDeleteCurrentProfile}
-                      className="px-3 py-2 rounded-lg bg-red-50 text-red-700 border border-red-200 text-xs font-bold"
+                      className="px-3 py-2 rounded-lg bg-red-50 hover:bg-red-600 text-red-700 hover:text-white border border-red-200 text-xs font-bold cursor-pointer transition-colors duration-150"
                     >
                       Xóa
                     </button>
@@ -479,7 +479,7 @@ export default function AdminPanel({
                     value={newProfileName}
                     onChange={(e) => setNewProfileName(e.target.value)}
                     placeholder="Nhập tên hồ sơ cuộc thi mới..."
-                    className="flex-1 px-3 py-2 rounded-lg border border-slate-300 text-sm"
+                    className="flex-1 px-3 py-2 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm transition-colors duration-150"
                   />
                   <button
                     onClick={() => {
@@ -487,7 +487,7 @@ export default function AdminPanel({
                       onSaveNewProfile(newProfileName.trim());
                       setNewProfileName("");
                     }}
-                    className="px-4 py-2 rounded-lg bg-slate-900 text-white text-xs font-bold"
+                    className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98]"
                   >
                     Lưu thành hồ sơ mới
                   </button>
@@ -548,7 +548,7 @@ export default function AdminPanel({
                         onClick={() =>
                           onUpdateActiveProfile({ defaultTimer: sec })
                         }
-                        className="px-2.5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-xs font-bold"
+                        className="px-2.5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-xs font-bold cursor-pointer transition-colors duration-150"
                       >
                         {sec}s
                       </button>
@@ -568,17 +568,17 @@ export default function AdminPanel({
                     onClick={() =>
                       onUpdateActiveProfile({ allowSkipDuringCountdown: true })
                     }
-                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 ${
+                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 transition-all duration-200 ${
                       activeProfile.allowSkipDuringCountdown !== false
-                        ? "border-blue-600 bg-blue-50/70"
-                        : "border-slate-200 bg-slate-50"
+                        ? "border-blue-600 bg-blue-50/70 shadow-sm"
+                        : "border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300"
                     }`}
                   >
                     <input
                       type="radio"
                       checked={activeProfile.allowSkipDuringCountdown !== false}
                       readOnly
-                      className="mt-1"
+                      className="mt-1 cursor-pointer"
                     />
                     <div>
                       <div className="font-bold text-sm text-slate-900">
@@ -595,17 +595,17 @@ export default function AdminPanel({
                     onClick={() =>
                       onUpdateActiveProfile({ allowSkipDuringCountdown: false })
                     }
-                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 ${
+                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 transition-all duration-200 ${
                       activeProfile.allowSkipDuringCountdown === false
-                        ? "border-blue-600 bg-blue-50/70"
-                        : "border-slate-200 bg-slate-50"
+                        ? "border-blue-600 bg-blue-50/70 shadow-sm"
+                        : "border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300"
                     }`}
                   >
                     <input
                       type="radio"
                       checked={activeProfile.allowSkipDuringCountdown === false}
                       readOnly
-                      className="mt-1"
+                      className="mt-1 cursor-pointer"
                     />
                     <div>
                       <div className="font-bold text-sm text-slate-900">
@@ -630,17 +630,17 @@ export default function AdminPanel({
                     onClick={() =>
                       onUpdateActiveProfile({ autoRevealOnTimeout: true })
                     }
-                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 ${
+                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 transition-all duration-200 ${
                       activeProfile.autoRevealOnTimeout !== false
-                        ? "border-blue-600 bg-blue-50/70"
-                        : "border-slate-200 bg-slate-50"
+                        ? "border-blue-600 bg-blue-50/70 shadow-sm"
+                        : "border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300"
                     }`}
                   >
                     <input
                       type="radio"
                       checked={activeProfile.autoRevealOnTimeout !== false}
                       readOnly
-                      className="mt-1"
+                      className="mt-1 cursor-pointer"
                     />
                     <div>
                       <div className="font-bold text-sm text-slate-900">
@@ -657,17 +657,17 @@ export default function AdminPanel({
                     onClick={() =>
                       onUpdateActiveProfile({ autoRevealOnTimeout: false })
                     }
-                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 ${
+                    className={`cursor-pointer p-3.5 rounded-xl border-2 flex items-start gap-3 transition-all duration-200 ${
                       activeProfile.autoRevealOnTimeout === false
-                        ? "border-blue-600 bg-blue-50/70"
-                        : "border-slate-200 bg-slate-50"
+                        ? "border-blue-600 bg-blue-50/70 shadow-sm"
+                        : "border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300"
                     }`}
                   >
                     <input
                       type="radio"
                       checked={activeProfile.autoRevealOnTimeout === false}
                       readOnly
-                      className="mt-1"
+                      className="mt-1 cursor-pointer"
                     />
                     <div>
                       <div className="font-bold text-sm text-slate-900">
@@ -702,7 +702,7 @@ export default function AdminPanel({
                         onUpdateActiveProfile(BUILTIN_PRESETS[p.key]);
                         onNotify(`Đã áp dụng chủ đề ${p.label}!`, "success");
                       }}
-                      className="px-2.5 py-1 rounded bg-slate-900 text-cyan-300 text-xs font-bold"
+                      className="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 text-cyan-300 hover:text-cyan-200 text-xs font-bold cursor-pointer transition-all duration-150 active:scale-[0.97]"
                     >
                       {p.label}
                     </button>
@@ -711,7 +711,7 @@ export default function AdminPanel({
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
-                <label className="px-3.5 py-2 rounded-lg bg-blue-600 text-white text-xs font-bold cursor-pointer">
+                <label className="px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98]">
                   Upload ảnh nền sân khấu
                   <input
                     type="file"
@@ -722,7 +722,7 @@ export default function AdminPanel({
                 </label>
                 <button
                   onClick={() => onUpdateActiveProfile({ backgroundImage: "" })}
-                  className="px-3 py-2 rounded-lg bg-slate-100 border border-slate-300 text-xs font-bold"
+                  className="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs font-bold cursor-pointer transition-colors duration-150"
                 >
                   Dùng nền mặc định
                 </button>
@@ -739,14 +739,18 @@ export default function AdminPanel({
                     onChange={(e) =>
                       onUpdateActiveProfile({ titleFont: e.target.value })
                     }
-                    className="w-full px-2.5 py-1.5 rounded border border-slate-300 text-xs font-bold bg-white"
+                    className="w-full px-2.5 py-1.5 rounded border border-slate-300 text-xs font-bold bg-white cursor-pointer"
                   >
-                    <option value="'Be Vietnam Pro', sans-serif">
+                    <option value="var(--font-be-vietnam), sans-serif">
                       Be Vietnam Pro
                     </option>
-                    <option value="'Montserrat', sans-serif">Montserrat</option>
-                    <option value="'Lexend', sans-serif">Lexend</option>
-                    <option value="'Inter', sans-serif">Inter</option>
+                    <option value="var(--font-montserrat), sans-serif">
+                      Montserrat
+                    </option>
+                    <option value="var(--font-lexend), sans-serif">
+                      Lexend
+                    </option>
+                    <option value="var(--font-inter), sans-serif">Inter</option>
                   </select>
                   <div className="flex items-center justify-between text-xs font-bold">
                     <span>Cỡ chữ: {activeProfile.titleSize}px</span>
@@ -756,6 +760,7 @@ export default function AdminPanel({
                       onChange={(e) =>
                         onUpdateActiveProfile({ titleColor: e.target.value })
                       }
+                      className="cursor-pointer"
                     />
                   </div>
                   <input
@@ -768,7 +773,7 @@ export default function AdminPanel({
                         titleSize: Number(e.target.value),
                       })
                     }
-                    className="w-full"
+                    className="w-full cursor-pointer"
                   />
                 </div>
 
@@ -782,14 +787,18 @@ export default function AdminPanel({
                     onChange={(e) =>
                       onUpdateActiveProfile({ questionFont: e.target.value })
                     }
-                    className="w-full px-2.5 py-1.5 rounded border border-slate-300 text-xs font-bold bg-white"
+                    className="w-full px-2.5 py-1.5 rounded border border-slate-300 text-xs font-bold bg-white cursor-pointer"
                   >
-                    <option value="'Be Vietnam Pro', sans-serif">
+                    <option value="var(--font-be-vietnam), sans-serif">
                       Be Vietnam Pro
                     </option>
-                    <option value="'Lexend', sans-serif">Lexend</option>
-                    <option value="'Inter', sans-serif">Inter</option>
-                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                    <option value="var(--font-lexend), sans-serif">
+                      Lexend
+                    </option>
+                    <option value="var(--font-inter), sans-serif">Inter</option>
+                    <option value="var(--font-montserrat), sans-serif">
+                      Montserrat
+                    </option>
                   </select>
                   <div className="flex items-center justify-between text-xs font-bold">
                     <span>Cỡ chữ: {activeProfile.questionSize}px</span>
@@ -801,6 +810,7 @@ export default function AdminPanel({
                         onChange={(e) =>
                           onUpdateActiveProfile({ questionBg: e.target.value })
                         }
+                        className="cursor-pointer"
                       />
                       <input
                         type="color"
@@ -811,6 +821,7 @@ export default function AdminPanel({
                             questionColor: e.target.value,
                           })
                         }
+                        className="cursor-pointer"
                       />
                     </div>
                   </div>
@@ -824,7 +835,7 @@ export default function AdminPanel({
                         questionSize: Number(e.target.value),
                       })
                     }
-                    className="w-full"
+                    className="w-full cursor-pointer"
                   />
                 </div>
 
@@ -838,14 +849,18 @@ export default function AdminPanel({
                     onChange={(e) =>
                       onUpdateActiveProfile({ optionFont: e.target.value })
                     }
-                    className="w-full px-2.5 py-1.5 rounded border border-slate-300 text-xs font-bold bg-white"
+                    className="w-full px-2.5 py-1.5 rounded border border-slate-300 text-xs font-bold bg-white cursor-pointer"
                   >
-                    <option value="'Be Vietnam Pro', sans-serif">
+                    <option value="var(--font-be-vietnam), sans-serif">
                       Be Vietnam Pro
                     </option>
-                    <option value="'Lexend', sans-serif">Lexend</option>
-                    <option value="'Inter', sans-serif">Inter</option>
-                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                    <option value="var(--font-lexend), sans-serif">
+                      Lexend
+                    </option>
+                    <option value="var(--font-inter), sans-serif">Inter</option>
+                    <option value="var(--font-montserrat), sans-serif">
+                      Montserrat
+                    </option>
                   </select>
                   <div className="flex items-center justify-between text-xs font-bold">
                     <span>Cỡ chữ: {activeProfile.optionSize}px</span>
@@ -857,6 +872,7 @@ export default function AdminPanel({
                         onChange={(e) =>
                           onUpdateActiveProfile({ optionBg: e.target.value })
                         }
+                        className="cursor-pointer"
                       />
                       <input
                         type="color"
@@ -865,6 +881,7 @@ export default function AdminPanel({
                         onChange={(e) =>
                           onUpdateActiveProfile({ optionColor: e.target.value })
                         }
+                        className="cursor-pointer"
                       />
                     </div>
                   </div>
@@ -878,7 +895,7 @@ export default function AdminPanel({
                         optionSize: Number(e.target.value),
                       })
                     }
-                    className="w-full"
+                    className="w-full cursor-pointer"
                   />
                 </div>
               </div>
@@ -983,7 +1000,7 @@ export default function AdminPanel({
                   await onPushCloud();
                   setIsSyncing(false);
                 }}
-                className="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold"
+                className="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 {isSyncing
                   ? "Đang đồng bộ..."
@@ -997,7 +1014,7 @@ export default function AdminPanel({
                   await onPullCloud();
                   setIsSyncing(false);
                 }}
-                className="px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white text-xs font-bold"
+                className="px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 {isSyncing
                   ? "Đang tải..."
@@ -1035,25 +1052,25 @@ export default function AdminPanel({
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <button
                   onClick={() => soundEngine.playTick()}
-                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300"
+                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   Tiếng đếm giây
                 </button>
                 <button
                   onClick={() => soundEngine.playUrgentTick()}
-                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300"
+                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   5 giây cuối
                 </button>
                 <button
                   onClick={() => soundEngine.playTimeoutBuzzer()}
-                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300"
+                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   Còi hết giờ
                 </button>
                 <button
                   onClick={() => soundEngine.playRevealSuccess()}
-                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300"
+                  className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold border border-slate-300 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   Mở đáp án đúng
                 </button>
@@ -1087,7 +1104,7 @@ export default function AdminPanel({
                     soundEngine.playTick();
                   }
                 }}
-                className="p-4 rounded-xl border-2 border-dashed border-blue-400 bg-blue-50/50 focus:bg-blue-100 outline-none text-center cursor-pointer space-y-1"
+                className="p-4 rounded-xl border-2 border-dashed border-blue-400 hover:border-blue-500 bg-blue-50/50 hover:bg-blue-50 focus:bg-blue-100 outline-none text-center cursor-pointer space-y-1 transition-all duration-200"
               >
                 <div className={`text-xs font-extrabold ${remoteStatus.color}`}>
                   {remoteStatus.title}

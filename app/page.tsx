@@ -209,13 +209,13 @@ export default function StageGameshowApp() {
               <button
                 type="button"
                 onClick={() => setShowPinModal(false)}
-                className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold"
+                className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98]"
               >
                 Đóng
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 rounded-lg bg-linear-to-r from-cyan-400 to-blue-600 text-slate-950 text-xs font-extrabold"
+                className="px-5 py-2 rounded-lg bg-linear-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 text-xs font-extrabold cursor-pointer shadow-md hover:shadow-cyan-500/25 transition-all duration-200 active:scale-[0.98]"
               >
                 Mở khóa
               </button>

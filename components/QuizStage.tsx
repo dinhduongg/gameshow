@@ -1,8 +1,8 @@
 "use client";
 
-import { soundEngine } from "@/lib/sound-and-firebase";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionItem, ThemeProfile } from "@/lib/types-and-data";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { soundEngine } from "@/lib/sound-and-firebase";
 
 interface QuizStageProps {
   profile: ThemeProfile;
@@ -295,13 +295,13 @@ export default function QuizStage({
                   if (isLockedDuringCountdown) return;
                   if (phase !== "REVEALED") revealAnswer();
                 }}
-                className={`rounded-xl p-4 md:p-5 text-left flex items-center gap-4 border-2 transition-none ${
+                className={`group rounded-xl p-4 md:p-5 text-left flex items-center gap-4 border-2 transition-[border-color,box-shadow,background-color] duration-200 ease-out ${
                   isCorrect
                     ? "bg-emerald-700 border-emerald-300 text-white shadow-[0_0_28px_rgba(16,185,129,0.55)]"
                     : isDimmed
                       ? "opacity-35"
-                      : ""
-                } ${isLockedDuringCountdown ? "cursor-default" : "cursor-pointer"}`}
+                      : "hover:brightness-110 hover:shadow-[0_0_20px_rgba(0,242,254,0.2)]"
+                } ${isLockedDuringCountdown ? "cursor-not-allowed" : "cursor-pointer"}`}
                 style={
                   isCorrect
                     ? undefined
@@ -312,7 +312,7 @@ export default function QuizStage({
                 }
               >
                 <span
-                  className="w-11 h-11 md:w-12 md:h-12 rounded-xl shrink-0 flex items-center justify-center font-black text-xl"
+                  className="w-11 h-11 md:w-12 md:h-12 rounded-xl shrink-0 flex items-center justify-center font-black text-xl transition-transform duration-200 group-hover:scale-105"
                   style={
                     isCorrect
                       ? { backgroundColor: "#ffffff", color: "#047857" }
@@ -354,7 +354,7 @@ export default function QuizStage({
             stopTimer();
             onExitHome();
           }}
-          className="h-8 px-3 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+          className="h-8 px-3 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer transition-all duration-200 active:scale-[0.97]"
         >
           <span>Trang chủ</span>
         </button>
@@ -363,7 +363,7 @@ export default function QuizStage({
           <button
             disabled={currentIndex === 0 || isLockedDuringCountdown}
             onClick={handlePrevQuestion}
-            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 disabled:opacity-40 text-white text-xs inline-flex items-center justify-center shrink-0"
+            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs inline-flex items-center justify-center shrink-0 cursor-pointer transition-all duration-200 active:scale-[0.95]"
             title="Câu trước"
           >
             ‹
@@ -372,7 +372,7 @@ export default function QuizStage({
           <button
             disabled={isLockedDuringCountdown}
             onClick={handlePrimaryAction}
-            className={`h-8 px-3.5 rounded-lg text-slate-950 text-xs font-extrabold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 disabled:opacity-50 disabled:cursor-not-allowed ${
+            className={`h-8 px-3.5 rounded-lg text-slate-950 text-xs font-extrabold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer transition-all duration-200 hover:brightness-110 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed ${
               phase === "IDLE"
                 ? "bg-linear-to-r from-cyan-400 to-blue-600"
                 : phase === "RUNNING" || phase === "TIMEOUT_WAITING"
@@ -399,7 +399,7 @@ export default function QuizStage({
               currentIndex >= questions.length - 1 || isLockedDuringCountdown
             }
             onClick={handleNextQuestion}
-            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 disabled:opacity-40 text-white text-xs inline-flex items-center justify-center shrink-0"
+            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs inline-flex items-center justify-center shrink-0 cursor-pointer transition-all duration-200 active:scale-[0.95]"
             title="Câu tiếp"
           >
             ›
@@ -409,14 +409,14 @@ export default function QuizStage({
         <div className="flex items-center gap-1.5 flex-nowrap">
           <button
             onClick={() => loadQuestion(currentIndex)}
-            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs inline-flex items-center justify-center shrink-0"
+            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs inline-flex items-center justify-center shrink-0 cursor-pointer transition-all duration-200 active:scale-[0.95]"
             title="Đặt lại câu này (Phím R)"
           >
             ↺
           </button>
           <button
             onClick={onToggleSound}
-            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-300 text-xs inline-flex items-center justify-center shrink-0"
+            className="h-8 w-8 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-cyan-300 text-xs inline-flex items-center justify-center shrink-0 cursor-pointer transition-all duration-200 active:scale-[0.95]"
             title="Bật/Tắt âm thanh"
           >
             {soundEnabled ? "🔊" : "🔇"}
