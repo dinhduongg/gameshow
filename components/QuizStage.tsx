@@ -258,7 +258,7 @@ export default function QuizStage({
 
       {/* Khung Câu hỏi HUD (có 4 góc định vị Sci-Fi) & 4 Ô Đáp án */}
       <main className="relative z-10 flex-1 min-h-0 max-w-7xl mx-auto w-full flex flex-col justify-center gap-4 md:gap-5 py-2">
-        <div className="flex justify-center shrink-0">
+        {/* <div className="flex justify-center shrink-0">
           <span
             className={`text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded border ${
               phase === "REVEALED"
@@ -280,7 +280,7 @@ export default function QuizStage({
             {phase === "REVEALED" &&
               `ĐÁP ÁN CHÍNH XÁC: PHƯƠNG ÁN ${currentQ.answer}`}
           </span>
-        </div>
+        </div> */}
 
         {/* Khung Câu hỏi HUD 4 góc định vị */}
         <div
